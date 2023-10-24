@@ -1,7 +1,7 @@
 {
   "name": "node-red-contrib-valvulafertilizante",
   "version": "1.0.1",
-  "description": "Water pump control with tank level secure function",
+  "description": "Nodo personalizado para Node-RED que permite controlar una válvula de inyección de fertilizante. El nodo evalúa una serie de condiciones basadas en el flujo de fluidos y parámetros configurables para determinar si se debe activar o desactivar la inyección de fertilizante.",
   "main": "valvula-fertilizante.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/diegoserranobst/controlbomba.git"
+    "url": "https://github.com/diegoserranobst/valvulaFertilizante.git"
   },
   "node-red": {
     "nodes": {
