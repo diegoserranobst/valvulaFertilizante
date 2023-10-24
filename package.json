@@ -1,0 +1,30 @@
+{
+  "name": "node-red-contrib-valvulafertilizante",
+  "version": "1.0.1",
+  "description": "Water pump control with tank level secure function",
+  "main": "valvula-fertilizante.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node-red"
+  ],
+  "author": "Diego Serrano",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/diegoserranobst/controlbomba.git"
+  },
+  "node-red": {
+    "nodes": {
+      "controlBomba": "./valvula-fertilizante.js"
+    },
+    "examples": [
+      "examples/simple-flow.json"
+    ],
+    "version": ">=2.0.0"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

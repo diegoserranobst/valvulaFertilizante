@@ -1,0 +1,40 @@
+<script type="text/javascript">
+    RED.nodes.registerType('valvula-fertilizante', {
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: { value: "" },
+            gatillar: { value: 0, required: true, validate: RED.validators.number() },
+            fertilizante: { value: 0, required: true, validate: RED.validators.number() },
+            debug: { value: false } // nuevo campo
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "file.png",
+        label: function () {
+            return this.name || "valvula-fertilizante";
+        },
+        oneditprepare: function () {
+            // Código para preparar la edición aquí, si es necesario
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="valvula-fertilizante">
+      <div class="form-row">
+          <label for="node-input-name"><i class="icon-tag"></i> Nombre</label>
+          <input type="text" id="node-input-name" placeholder="Nombre">
+      </div>
+      <div class="form-row">
+          <label for="node-input-gatillar"><i class="icon-tag"></i> Gatillar (litros)</label>
+          <input type="number" id="node-input-gatillar" placeholder="Gatillar">
+      </div>
+      <div class="form-row">
+          <label for="node-input-fertilizante"><i class="icon-tag"></i> Fertilizante (litros)</label>
+          <input type="number" id="node-input-fertilizante" placeholder="Fertilizante">
+      </div>
+      <div class="form-row"> <!-- nuevo campo -->
+          <label for="node-input-debug"><i class="icon-tag"></i> Debug</label>
+          <input type="checkbox" id="node-input-debug">
+      </div>
+  </script>
