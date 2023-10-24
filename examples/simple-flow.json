@@ -1,0 +1,251 @@
+[
+    {
+        "id": "b1c53d241807652e",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b1",
+        "type": "valvula-fertilizante",
+        "z": "b1c53d241807652e",
+        "name": "Control de Válvula",
+        "gatillar": 150,
+        "fertilizante": 10,
+        "debug": true,
+        "x": 430,
+        "y": 280,
+        "wires": [
+            [
+                "c1"
+            ]
+        ]
+    },
+    {
+        "id": "c1",
+        "type": "debug",
+        "z": "b1c53d241807652e",
+        "name": "Salida",
+        "active": true,
+        "x": 630,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "9dd9958624f84dc8",
+        "type": "inject",
+        "z": "b1c53d241807652e",
+        "name": "config",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "{   \"config\": {     \"gatillar\": 1000,     \"fertilizante\": 0.2   } }",
+        "payloadType": "json",
+        "x": 190,
+        "y": 340,
+        "wires": [
+            [
+                "b1"
+            ]
+        ]
+    },
+    {
+        "id": "4b736dbb81bcf0ee",
+        "type": "inject",
+        "z": "b1c53d241807652e",
+        "name": "activar",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "{   \"inyectarActivo\": true }",
+        "payloadType": "json",
+        "x": 190,
+        "y": 400,
+        "wires": [
+            [
+                "b1"
+            ]
+        ]
+    },
+    {
+        "id": "70fcfb290b4a001b",
+        "type": "inject",
+        "z": "b1c53d241807652e",
+        "name": "desactivar",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "{   \"inyectarActivo\": false }",
+        "payloadType": "json",
+        "x": 200,
+        "y": 440,
+        "wires": [
+            [
+                "b1"
+            ]
+        ]
+    },
+    {
+        "id": "80b3f0d774f032e1",
+        "type": "inject",
+        "z": "b1c53d241807652e",
+        "name": "Incrementar matrizLitros",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "100",
+        "payloadType": "num",
+        "x": 170,
+        "y": 40,
+        "wires": [
+            [
+                "396066a86e8f025d"
+            ]
+        ]
+    },
+    {
+        "id": "396066a86e8f025d",
+        "type": "function",
+        "z": "b1c53d241807652e",
+        "name": "Acumular",
+        "func": "context.matrizLitros = context.matrizLitros || 0;\ncontext.matrizLitros += msg.payload;\nmsg.payload = { matrizLitros: context.matrizLitros };\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 40,
+        "wires": [
+            [
+                "a7e7d00753fd07de",
+                "b1"
+            ]
+        ]
+    },
+    {
+        "id": "a7e7d00753fd07de",
+        "type": "debug",
+        "z": "b1c53d241807652e",
+        "name": "Salida",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 570,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "54239b1b888a07d8",
+        "type": "inject",
+        "z": "b1c53d241807652e",
+        "name": "Incrementar fertilizanteLitros",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0.05",
+        "payloadType": "num",
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "a6887d267242da84"
+            ]
+        ]
+    },
+    {
+        "id": "a6887d267242da84",
+        "type": "function",
+        "z": "b1c53d241807652e",
+        "name": "Acumular",
+        "func": "context.fertilizanteLitros = context.fertilizanteLitros || 0;\ncontext.fertilizanteLitros += msg.payload;\nmsg.payload = { fertilizanteLitros: context.fertilizanteLitros };\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 100,
+        "wires": [
+            [
+                "d2b765499cbeee42",
+                "b1"
+            ]
+        ]
+    },
+    {
+        "id": "d2b765499cbeee42",
+        "type": "debug",
+        "z": "b1c53d241807652e",
+        "name": "Salida",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 590,
+        "y": 100,
+        "wires": []
+    }
+]
